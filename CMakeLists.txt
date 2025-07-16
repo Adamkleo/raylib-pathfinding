@@ -3,10 +3,20 @@ project(MyRaylibProject)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# raylib setup
+# Add raylib
 add_subdirectory(raylib)
 
-add_executable(main main.cpp)
+# Add include directory
+include_directories(include)
+
+# Explicit source files list
+add_executable(main
+    src/main.cpp
+    src/grid.cpp
+    src/obstacle.cpp
+)
+
+# Link raylib
 target_link_libraries(main raylib)
 
 # macOS frameworks
