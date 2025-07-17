@@ -5,6 +5,7 @@
 #include "raylib.h"
 #include "bot.h"
 #include "goal.h"
+#include "types.h"
 
 #include <algorithm>
 #include <iostream>
@@ -56,6 +57,8 @@ std::vector<Node> BFS(std::vector<std::vector<Node>> &grid, Node root,
 
 
 
+
+
 int main(void) {
 
     SetRandomSeed(1409);
@@ -77,14 +80,15 @@ int main(void) {
     Goal goal;
 
     // Create grid
-    std::vector<std::vector<Node>> grid = createGrid();
+    // std::vector<std::vector<Node>> grid = createGrid();
+    Grid grid(NUMBER_OF_CELLS_X, NUMBER_OF_CELLS_Y);
 
     // Generate obstacles
     const std::vector<Vector2> obstacles =
         generateObstacles(NUMBER_OF_OBSTACLES);
 
     // Add obstacles to grid
-    addObstaclesToGrid(grid, obstacles);
+    grid.addObstacles(obstacles);
 
     int frameCounter = 0;
     const int stepDelay = 10;
@@ -97,9 +101,10 @@ int main(void) {
         ClearBackground(RAYWHITE);
 
         // Draw grid
-        drawGrid(obstacles);
+        grid.draw();
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+
 
             goal.set(mouse.x, mouse.y);
             goal.active = true;
@@ -111,7 +116,7 @@ int main(void) {
                         (int)goal.y / GRID_CELL_SIZE, false);
 
             movementPath =
-                BFS(grid, root, target, NUMBER_OF_CELLS_X, NUMBER_OF_CELLS_Y);
+                BFS(grid.grid, root, target, NUMBER_OF_CELLS_X, NUMBER_OF_CELLS_Y);
 
             currentPathStep = 0;
             passed.clear();

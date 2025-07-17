@@ -8,4 +8,4 @@ constexpr int SCREEN_HEIGHT = 800;
 constexpr int NUMBER_OF_CELLS_X = SCREEN_WIDTH / GRID_CELL_SIZE;
 constexpr int NUMBER_OF_CELLS_Y = SCREEN_HEIGHT / GRID_CELL_SIZE;
 
-constexpr int NUMBER_OF_OBSTACLES = 100;
+constexpr int NUMBER_OF_OBSTACLES = 300;

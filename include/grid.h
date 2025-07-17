@@ -4,6 +4,15 @@
 #include "raylib.h"
 #include <vector>
 
-std::vector<std::vector<Node>> createGrid();
 
-void drawGrid(const std::vector<Vector2> &obstacles);
+
+struct Grid {
+    int width, height;
+    std::vector<std::vector<Node>> grid;
+
+    Grid(int width, int height); // constructor
+
+    void addObstacles(const std::vector<Vector2> &obstacles);
+
+    void draw();
+};
